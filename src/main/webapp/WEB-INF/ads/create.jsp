@@ -18,6 +18,13 @@
                 <label for="description">Description</label>
                 <textarea id="description" name="description" class="form-control" type="text"></textarea>
             </div>
+            <div id="categories">
+                <h5>Categories</h5>
+                    <label   class="checkbox-line"><input type="checkbox" value="1"> Clothing</label>
+                    <label  class="checkbox-line"><input type="checkbox" value="2"> Electronics</label>
+                    <label  class="checkbox-line"><input type="checkbox" value="3"> Misc</label>
+                    <label  class="checkbox-line"><input type="checkbox" value="4"> Other</label>
+                </div>
             <input type="submit" class="btn btn-block btn-primary">
         </form>
     </div>

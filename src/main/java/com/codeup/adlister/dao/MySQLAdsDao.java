@@ -50,20 +50,9 @@ public class MySQLAdsDao implements Ads {
     }
 
     @Override
-    public List<Ad> search(String searchTerm) {
-        try {
-            String select = "SELECT * FROM ads where description LIKE CONCAT(\"%\", ?, \"%\") or title LIKE CONCAT(\"%\", ?, \"%\")";
-            PreparedStatement stmt = connection.prepareStatement(select);
-            stmt.setString(1, searchTerm);
-            stmt.setString( 2, searchTerm);
-            ResultSet rs = stmt.executeQuery();
-            return createAdsFromResults(rs);
-        } catch (SQLException e) {
-            throw new RuntimeException("Error retrieving all ads.", e);
-        }
+    public Object search(String searchTerm) {
+        return null;
     }
-
-
 
     @Override
     public Long insert(Ad ad) {
@@ -99,5 +88,10 @@ public class MySQLAdsDao implements Ads {
         }
         return ads;
     }
+
+
+
+
+
 
 }

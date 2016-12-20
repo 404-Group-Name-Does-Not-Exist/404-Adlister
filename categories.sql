@@ -1,9 +1,16 @@
 CREATE TABLE categories (
   id INT UNSIGNED NOT NULL AUTO_INCREMENT,
-  category1 VARCHAR(50),
-  category2  VARCHAR(50) NOT NULL,
-  category3 VARCHAR(50) NOT NULL,
+  category VARCHAR(50),
   PRIMARY KEY (id),
   FOREIGN KEY (id) REFERENCES ads(id)
 
 );
+
+CREATE TABLE adCategories (
+  id  INT UNSIGNED NOT NULL AUTO_INCREMENT,
+  ad_id INT UNSIGNED NOT NULL,
+  cat_id INT UNSIGNED NOT NULL,
+  FOREIGN KEY (ad_id) REFERENCES ads(id),
+  FOREIGN KEY (cat_id) REFERENCES categories(id),
+  PRIMARY KEY (id)
+)
