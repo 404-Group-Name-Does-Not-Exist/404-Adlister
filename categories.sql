@@ -1,0 +1,9 @@
+CREATE TABLE categories (
+  id INT UNSIGNED NOT NULL AUTO_INCREMENT,
+  category1 VARCHAR(50),
+  category2  VARCHAR(50) NOT NULL,
+  category3 VARCHAR(50) NOT NULL,
+  PRIMARY KEY (id),
+  FOREIGN KEY (id) REFERENCES ads(id)
+
+);
