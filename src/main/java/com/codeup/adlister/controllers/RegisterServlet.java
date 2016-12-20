@@ -8,6 +8,8 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+import javax.swing.text.html.HTML;
 import java.io.IOException;
 
 @WebServlet(name = "controllers.RegisterServlet", urlPatterns = "/register")
@@ -21,6 +23,8 @@ public class RegisterServlet extends HttpServlet {
         String email = request.getParameter("email");
         String password = request.getParameter("password");
         String passwordConfirmation = request.getParameter("confirm_password");
+       // HttpSession session = request.getSession();
+
 
         // validate input
         boolean inputHasErrors = username.isEmpty()
@@ -29,6 +33,11 @@ public class RegisterServlet extends HttpServlet {
             || (! password.equals(passwordConfirmation));
 
         if (inputHasErrors) {
+            response.sendRedirect("/register");
+            return;
+        }
+
+        if (DaoFactory.getUsersDao().findByUsername(username) != null){
             response.sendRedirect("/register");
             return;
         }
