@@ -23,7 +23,7 @@ public class RegisterServlet extends HttpServlet {
         String email = request.getParameter("email");
         String password = request.getParameter("password");
         String passwordConfirmation = request.getParameter("confirm_password");
-       // HttpSession session = request.getSession();
+        HttpSession session = request.getSession();
 
 
         // validate input
@@ -33,11 +33,13 @@ public class RegisterServlet extends HttpServlet {
             || (! password.equals(passwordConfirmation));
 
         if (inputHasErrors) {
+            session.setAttribute("message", "Inputs cannot be empty, or password did not match. ");
             response.sendRedirect("/register");
             return;
         }
 
         if (DaoFactory.getUsersDao().findByUsername(username) != null){
+            session.setAttribute("message", "Username is already in use. Please pick another");
             response.sendRedirect("/register");
             return;
         }
