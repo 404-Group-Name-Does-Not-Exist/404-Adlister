@@ -8,6 +8,9 @@
 <body>
     <jsp:include page="/WEB-INF/partials/navbar.jsp" />
     <div class="container">
+
+        ${sessionScope.message}
+
         <h1>Create a new Ad</h1>
         <form action="/ads/create" method="post">
             <div class="form-group">
