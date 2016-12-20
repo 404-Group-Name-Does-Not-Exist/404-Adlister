@@ -8,7 +8,10 @@
 <body>
     <jsp:include page="partials/navbar.jsp" />
     <div class="container">
-        <h1>Please fill in your information.</h1>
+
+        ${sessionScope.message}
+
+            <h1>Please fill in your information.</h1>
         <form action="/register" method="post">
             <div class="form-group">
                 <label for="username">Username</label>
