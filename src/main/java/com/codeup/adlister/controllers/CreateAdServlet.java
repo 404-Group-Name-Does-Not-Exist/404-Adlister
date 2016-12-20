@@ -27,13 +27,16 @@ public class CreateAdServlet extends HttpServlet {
         User user = (User) request.getSession().getAttribute("user");
         HttpSession session = request.getSession();
 
+        boolean inputHasErrors = request.getParameter("title").isEmpty()
+                || request.getParameter("description").isEmpty();
+
         Ad ad = new Ad(
             user.getId(),
             request.getParameter("title"),
             request.getParameter("description")
         );
 
-        if (request.getParameter("title").isEmpty() || request.getParameter("description").isEmpty()){
+        if (inputHasErrors){
             session.setAttribute("message", "Title or description cannot be empty.");
             response.sendRedirect("/ads/create");
             return;
