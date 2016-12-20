@@ -3,14 +3,16 @@
 <html>
 <head>
     <jsp:include page="/WEB-INF/partials/head.jsp">
-        <jsp:param name="title" value="Your Profile" />
+        <jsp:param name="title" value="Profile" />
     </jsp:include>
 </head>
 <body>
     <jsp:include page="/WEB-INF/partials/navbar.jsp" />
 
     <div class="container">
-        <h1>Welcome, ${sessionScope.user.username}! Here are your ads:</h1>
+        <h1>Welcome, ${sessionScope.user.username}!</h1>
+
+        <h2>If you have created any ads, they will be displayed below. If not, create one <a href="/ads/create">here</a>!</h2>
 
         <c:forEach var="ad" items="${ads}">
             <div class="col-md-6">
