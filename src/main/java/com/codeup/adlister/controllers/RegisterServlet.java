@@ -2,6 +2,7 @@ package com.codeup.adlister.controllers;
 
 import com.codeup.adlister.dao.DaoFactory;
 import com.codeup.adlister.models.User;
+import org.apache.commons.validator.routines.EmailValidator;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -24,19 +25,35 @@ public class RegisterServlet extends HttpServlet {
         String password = request.getParameter("password");
         String passwordConfirmation = request.getParameter("confirm_password");
         HttpSession session = request.getSession();
+        EmailValidator emailValidator = EmailValidator.getInstance();
 
 
         // validate input
-        boolean inputHasErrors = username.isEmpty()
+        boolean inputsAreEmpty = username.isEmpty()
             || email.isEmpty()
-            || password.isEmpty()
-            || (! password.equals(passwordConfirmation));
+            || password.isEmpty();
 
-        if (inputHasErrors) {
-            session.setAttribute("message", "Inputs cannot be empty, or password did not match. ");
+        boolean passDoesNotMatch = (! password.equals(passwordConfirmation));
+        boolean emailIsValid = emailValidator.isValid(email);
+
+        if (inputsAreEmpty) {
+            session.setAttribute("message", "Inputs cannot be empty");
             response.sendRedirect("/register");
             return;
         }
+
+        if (passDoesNotMatch){
+            session.setAttribute("message", "Password did not match");
+            response.sendRedirect("/register");
+            return;
+        }
+
+        if(!emailIsValid){
+            session.setAttribute("message", "That is not a valid Email address.");
+            response.sendRedirect("/register");
+            return;
+        }
+
 
         if (DaoFactory.getUsersDao().findByUsername(username) != null){
             session.setAttribute("message", "Username is already in use. Please pick another");
