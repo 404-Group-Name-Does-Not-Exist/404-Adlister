@@ -24,7 +24,7 @@
                 }
             %>
     </ul>
-        <form class="navbar-form" role="search">
+        <form action="/ads" method="GET" class="navbar-form" role="search">
             <div class="input-group">
                 <input id="search" name="search" type="text" class="form-control" placeholder="Search">
                 <span class="input-group-btn">

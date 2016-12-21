@@ -9,6 +9,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.lang.reflect.Array;
 import java.util.ArrayList;
@@ -26,6 +27,11 @@ public class CreateAdServlet extends HttpServlet {
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
         User user = (User) request.getSession().getAttribute("user");
+        HttpSession session = request.getSession();
+
+        boolean inputHasErrors = request.getParameter("title").isEmpty()
+                || request.getParameter("description").isEmpty();
+
         ArrayList cats = new ArrayList();
         Ad ad = new Ad(
                 user.getId(),
@@ -33,6 +39,16 @@ public class CreateAdServlet extends HttpServlet {
                 request.getParameter("description")
         );
         Long ad_id = DaoFactory.getAdsDao().insert(ad);
+
+        if (inputHasErrors){
+            session.setAttribute("message", "Title or description cannot be empty.");
+            response.sendRedirect("/ads/create");
+            return;
+        }
+
+
+        //create and save new add
+        DaoFactory.getAdsDao().insert(ad);
         response.sendRedirect("/ads");
 
         if (request.getParameter("category[0]") != null) {

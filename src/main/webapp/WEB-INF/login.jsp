@@ -2,12 +2,14 @@
 <html>
 <head>
     <jsp:include page="/WEB-INF/partials/head.jsp">
-        <jsp:param name="title" value="Please Log In" />
+        <jsp:param name="title" value="Login" />
     </jsp:include>
 </head>
 <body>
     <jsp:include page="/WEB-INF/partials/navbar.jsp" />
     <div class="container">
+        <div class="col-md-6 col-md-offset-3">
+
         <h1>Please Log In</h1>
         <form action="/login" method="POST">
             <div class="form-group">
@@ -20,6 +22,7 @@
             </div>
             <input type="submit" class="btn btn-primary btn-block" value="Log In">
         </form>
+        </div>
     </div>
 </body>
 </html>
