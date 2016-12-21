@@ -21,6 +21,13 @@
                 <label for="description">Description</label>
                 <textarea id="description" name="description" class="form-control" type="text"></textarea>
             </div>
+            <div id="categories">
+                <h5>Categories</h5>
+                    <input name="category[0]" class="checkbox-line" type="checkbox" value="1"> Clothing
+                    <input name="category[1]" class="checkbox-line" type="checkbox" value="2"> Electronics
+                    <input name="category[2]" class="checkbox-line" type="checkbox" value="3"> Misc
+                    <input name="category[3]" class="checkbox-line" type="checkbox" value="4"> Other
+                </div>
             <input type="submit" class="btn btn-block btn-primary">
         </form>
     </div>

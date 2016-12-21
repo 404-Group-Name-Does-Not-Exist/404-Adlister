@@ -13,4 +13,6 @@ public interface Ads {
     List<Ad> userAds(long userId);
 
     Object search(String searchTerm);
+
+    long insertCat(long cat_id, long ad_id);
 }

@@ -2,12 +2,8 @@ package com.codeup.adlister.dao;
 
 import com.codeup.adlister.controllers.Config;
 import com.codeup.adlister.models.Ad;
-import com.codeup.adlister.models.User;
 import com.mysql.cj.jdbc.Driver;
 
-import java.io.FileInputStream;
-import java.io.IOException;
-import java.io.InputStream;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -54,20 +50,9 @@ public class MySQLAdsDao implements Ads {
     }
 
     @Override
-    public List<Ad> search(String searchTerm) {
-        try {
-            String select = "SELECT * FROM ads where description LIKE CONCAT(\"%\", ?, \"%\") or title LIKE CONCAT(\"%\", ?, \"%\")";
-            PreparedStatement stmt = connection.prepareStatement(select);
-            stmt.setString(1, searchTerm);
-            stmt.setString( 2, searchTerm);
-            ResultSet rs = stmt.executeQuery();
-            return createAdsFromResults(rs);
-        } catch (SQLException e) {
-            throw new RuntimeException("Error retrieving all ads.", e);
-        }
+    public Object search(String searchTerm) {
+        return null;
     }
-
-
 
     @Override
     public Long insert(Ad ad) {
@@ -103,4 +88,24 @@ public class MySQLAdsDao implements Ads {
         }
         return ads;
     }
+
+    @Override
+   public long insertCat(long cat_id, long ad_id) {
+      try {
+            String insertQuery = "INSERT INTO adCategories(cat_id, ad_id) VALUES (?, ?)";
+            PreparedStatement stmt = connection.prepareStatement(insertQuery, Statement.RETURN_GENERATED_KEYS);
+            stmt.setLong(1, cat_id);
+            stmt.setLong(2, ad_id);
+            stmt.executeUpdate();
+            ResultSet rs = stmt.getGeneratedKeys();
+            rs.next();
+            return rs.getLong(1);
+        } catch (SQLException e) {
+            throw new RuntimeException("Error creating a new ad.", e);
+        }
+
+
+
+
+}
 }
