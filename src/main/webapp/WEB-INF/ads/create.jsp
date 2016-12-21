@@ -20,10 +20,10 @@
             </div>
             <div id="categories">
                 <h5>Categories</h5>
-                    <label   class="checkbox-line"><input type="checkbox" value="1"> Clothing</label>
-                    <label  class="checkbox-line"><input type="checkbox" value="2"> Electronics</label>
-                    <label  class="checkbox-line"><input type="checkbox" value="3"> Misc</label>
-                    <label  class="checkbox-line"><input type="checkbox" value="4"> Other</label>
+                    <input name="category[0]" class="checkbox-line" type="checkbox" value="1"> Clothing
+                    <input name="category[1]" class="checkbox-line" type="checkbox" value="2"> Electronics
+                    <input name="category[2]" class="checkbox-line" type="checkbox" value="3"> Misc
+                    <input name="category[3]" class="checkbox-line" type="checkbox" value="4"> Other
                 </div>
             <input type="submit" class="btn btn-block btn-primary">
         </form>

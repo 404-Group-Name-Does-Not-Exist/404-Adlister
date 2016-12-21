@@ -10,6 +10,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.lang.reflect.Array;
+import java.util.ArrayList;
 
 @WebServlet(name = "controllers.CreateAdServlet", urlPatterns = "/ads/create")
 public class CreateAdServlet extends HttpServlet {
@@ -19,18 +21,33 @@ public class CreateAdServlet extends HttpServlet {
             return;
         }
         request.getRequestDispatcher("/WEB-INF/ads/create.jsp")
-            .forward(request, response);
+                .forward(request, response);
     }
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
         User user = (User) request.getSession().getAttribute("user");
-
+        ArrayList cats = new ArrayList();
         Ad ad = new Ad(
-            user.getId(),
-            request.getParameter("title"),
-            request.getParameter("description")
+                user.getId(),
+                request.getParameter("title"),
+                request.getParameter("description")
         );
-        DaoFactory.getAdsDao().insert(ad);
+        Long ad_id = DaoFactory.getAdsDao().insert(ad);
         response.sendRedirect("/ads");
+
+        if (request.getParameter("category[0]") != null) {
+            DaoFactory.getAdsDao().insertCat(Long.parseLong(request.getParameter("category[0]")), ad_id);
+        }
+        if (request.getParameter("category[1]") != null) {
+            DaoFactory.getAdsDao().insertCat(Long.parseLong(request.getParameter("category[1]")), ad_id);
+        }
+        if (request.getParameter("category[2]") != null) {
+            DaoFactory.getAdsDao().insertCat(Long.parseLong(request.getParameter("category[2]")), ad_id);
+        }
+        if (request.getParameter("category[3]") != null) {
+            DaoFactory.getAdsDao().insertCat(Long.parseLong(request.getParameter("category[3]")), ad_id);
+            System.out.println(cats);
+        }
+
     }
 }
