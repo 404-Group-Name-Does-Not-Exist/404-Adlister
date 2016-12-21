@@ -7,11 +7,15 @@
 </head>
 <body>
     <jsp:include page="/WEB-INF/partials/navbar.jsp" />
+    <div class="jumbotron">
     <div class="container">
-        <div class="col-md-6 col-md-offset-3">
-
-        <h1>Please Log In</h1>
-        <form action="/login" method="POST">
+        <h1>Login</h1>
+        <h2>If you haven't yet registered, please do so <a href="/register">here</a>.</h2>
+    </div>
+    </div>
+    <div class="container">
+        <div ng-view class="col-md-3"></div>
+        <form ng-view class="col-md-6 content" action="/login" method="POST">
             <div class="form-group">
                 <label for="username">Username</label>
                 <input id="username" name="username" class="form-control" type="text">
@@ -22,7 +26,8 @@
             </div>
             <input type="submit" class="btn btn-primary btn-block" value="Log In">
         </form>
-        </div>
+        <div ng-view class="col-md-3"></div>
+    </div>
     </div>
 </body>
 </html>

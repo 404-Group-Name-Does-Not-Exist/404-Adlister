@@ -7,12 +7,19 @@
 </head>
 <body>
     <jsp:include page="partials/navbar.jsp" />
+    <div class="jumbotron">
     <div class="container">
 
-        ${sessionScope.message}
 
-            <h1>Please fill in your information.</h1>
-        <form action="/register" method="post">
+        <h1>Registration</h1>
+        <h2>Please fill in your information.</h2>
+    </div>
+    </div>
+    <div class="container">
+        <div ng-view class="col-md-3"></div>
+
+        <form ng-view class="col-md-6 content" action="/register" method="post">
+            ${sessionScope.message}
             <div class="form-group">
                 <label for="username">Username</label>
                 <input id="username" name="username" class="form-control" type="text">
@@ -31,6 +38,7 @@
             </div>
             <input type="submit" class="btn btn-primary btn-block">
         </form>
+        <div ng-view class="col-md-3"></div>
     </div>
 </body>
 </html>
