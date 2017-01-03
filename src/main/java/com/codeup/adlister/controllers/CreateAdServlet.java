@@ -32,6 +32,12 @@ public class CreateAdServlet extends HttpServlet {
         boolean inputHasErrors = request.getParameter("title").isEmpty()
                 || request.getParameter("description").isEmpty();
 
+        if (inputHasErrors){
+            session.setAttribute("message", "Title or description cannot be empty.");
+            response.sendRedirect("/ads/create");
+            return;
+        }
+
         ArrayList cats = new ArrayList();
         Ad ad = new Ad(
                 user.getId(),
@@ -40,15 +46,9 @@ public class CreateAdServlet extends HttpServlet {
         );
         Long ad_id = DaoFactory.getAdsDao().insert(ad);
 
-        if (inputHasErrors){
-            session.setAttribute("message", "Title or description cannot be empty.");
-            response.sendRedirect("/ads/create");
-            return;
-        }
 
 
         //create and save new add
-        DaoFactory.getAdsDao().insert(ad);
         response.sendRedirect("/ads");
 
         if (request.getParameter("category[0]") != null) {
