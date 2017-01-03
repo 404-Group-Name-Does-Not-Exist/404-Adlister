@@ -8,12 +8,16 @@
 </head>
 <body>
     <jsp:include page="/WEB-INF/partials/navbar.jsp" />
-    <div class="jumbotron">
-        <div class="container">
-            <h1>Welcome, ${sessionScope.user.username}!</h1>
-            <h2>If you have created any ads, they will be displayed below. If not, create one <a href="/ads/create">here</a>!</h2>
+    <section id="intro" class="section-intro">
+        <div class="overlay">
+            <div class="container">
+                <div class="main-text">
+                    <h1 class="intro-title"><span style="color: #3498DB">Welcome,</span> ${sessionScope.user.username}!</h1>
+                    <p class="sub-title">Create an ad <a href="/ads/create">here</a>! Ads you've created will be displayed below.</p>
+                </div>
+            </div>
         </div>
-    </div>
+    </section>
     <div class="container">
         <div class="row">
             <c:forEach var="ad" items="${ads}">
@@ -27,5 +31,6 @@
             </c:forEach>
         </div>
     </div>
+    <jsp:include page="/WEB-INF/partials/footer.jsp" />
 </body>
 </html>
