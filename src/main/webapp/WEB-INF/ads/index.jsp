@@ -9,27 +9,30 @@
 <body>
 <jsp:include page="/WEB-INF/partials/navbar.jsp" />
 
-<div class="jumbotron">
+<section id="intro" class="section-intro">
+    <div class="overlay">
+        <div class="container">
+            <div class="main-text">
+                <h1 class="intro-title"><span style="color: #3498DB">Ads</span></h1>
+                <p class="sub-title">Available listings are displayed below.</p>
+            </div>
+        </div>
+    </div>
+</section>
 <div class="container">
-    <h1>Ads</h1>
-    <h2>These are the items available to buy. Click 'Details' to learn more about an item.</h2>
-</div>
-</div>
-<div class="container">
-    <div class="row">
     <c:forEach var="ad" items="${ads}">
         <div class="col-md-6">
             <div class="card card-block">
-            <h2 class="card-title">${ad.title}</h2>
-            <p class="card-text">${ad.description}</p>
-                <a href="#" class="card-link">Details</a>
+                <h2 class="card-title">${ad.title}</h2>
+                <p class="card-text">${ad.description}</p>
+                <a href="details=id${ad.id}" class="card-link">Details</a>
             </div>
         </div>
     </c:forEach>
-    </div>
 </div>
 
 
+<jsp:include page="/WEB-INF/partials/footer.jsp" />
 
 </body>
 </html>

@@ -7,25 +7,30 @@
     </jsp:include>
 </head>
 <body>
-    <jsp:include page="/WEB-INF/partials/navbar.jsp" />
-    <div class="jumbotron">
+<jsp:include page="/WEB-INF/partials/navbar.jsp" />
+<section id="intro" class="section-intro">
+    <div class="overlay">
         <div class="container">
-            <h1>Welcome, ${sessionScope.user.username}!</h1>
-            <h2>If you have created any ads, they will be displayed below. If not, create one <a href="/ads/create">here</a>!</h2>
+            <div class="main-text">
+                <h1 class="intro-title"><span style="color: #3498DB">Welcome,</span> ${sessionScope.user.username}!</h1>
+                <p class="sub-title">Create an ad <a href="/ads/create">here</a>! Ads you've created will be displayed below.</p>
+            </div>
         </div>
     </div>
-    <div class="container">
-        <div class="row">
-            <c:forEach var="ad" items="${ads}">
-                <div class="col-md-6">
-                    <div class="card card-block">
-                        <h2 class="card-title">${ad.title}</h2>
-                        <p class="card-text">${ad.description}</p>
-                        <a href="#" class="card-link">Details</a>
-                    </div>
+</section>
+<div class="container">
+    <div class="row">
+        <c:forEach var="ad" items="${ads}">
+            <div class="col-md-6">
+                <div class="card card-block">
+                    <h2 class="card-title">${ad.title}</h2>
+                    <p class="card-text">${ad.description}</p>
+                    <a href="details=id${ad.id}" class="card-link">Details</a>
                 </div>
-            </c:forEach>
-        </div>
+            </div>
+        </c:forEach>
     </div>
+</div>
+<jsp:include page="/WEB-INF/partials/footer.jsp" />
 </body>
 </html>
