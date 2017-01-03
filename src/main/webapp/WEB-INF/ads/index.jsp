@@ -23,9 +23,9 @@
     <c:forEach var="ad" items="${ads}">
         <div class="col-md-6">
             <div class="card card-block">
-            <h2 class="card-title">${ad.title}</h2>
-            <p class="card-text">${ad.description}</p>
-                <a href="#" class="card-link">Details</a>
+                <h2 class="card-title">${ad.title}</h2>
+                <p class="card-text">${ad.description}</p>
+                <a href="details=id${ad.id}" class="card-link">Details</a>
             </div>
         </div>
     </c:forEach>
