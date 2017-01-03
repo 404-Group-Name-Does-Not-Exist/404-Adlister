@@ -26,6 +26,7 @@
                     <h2 class="card-title">${ad.title}</h2>
                     <p class="card-text">${ad.description}</p>
                     <a href="details=id${ad.id}" class="card-link">Details</a>
+
                 </div>
             </div>
         </c:forEach>
